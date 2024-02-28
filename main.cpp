@@ -6,7 +6,6 @@ std::string get_desired_operation() {
   std::cout << "add, list, edit, delete or exit." << std::endl;
   std::string desired_operation;
   getline(std::cin, desired_operation);
-  // std::cin >> desired_operation;
   return desired_operation;
 };
 
@@ -14,7 +13,6 @@ std::string get_todo() {
   std::cout << "Please enter a new todo:" << std::endl;
   std::string new_todo;
   getline(std::cin, new_todo);
-  // std::cin >> new_todo;
   return new_todo;
 };
 
