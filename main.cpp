@@ -3,7 +3,7 @@
 
 std::string get_desired_operation() {
   std::cout << "Please enter one of the following todo operations:" << std::endl;
-  std::cout << "add, list, edit, delete or exit." << std::endl;
+  std::cout << "add, list, edit, delete, clear or exit." << std::endl;
   std::string desired_operation;
   getline(std::cin, desired_operation);
   return desired_operation;
@@ -66,6 +66,21 @@ void delete_todo(std::vector<std::string> &todos) {
   }
 };
 
+void clear_todos(std::vector<std::string> &todos) {
+  std::cout << "Are you sure that you want to clear all of the todos?" << std::endl;
+  std::cout << "yes to confirm, no to decline." << std::endl;
+  std::string answer;
+  getline(std::cin, answer);
+  if(answer == "yes") {
+    todos.clear();
+    std::cout << "Todos cleared." << std::endl;
+  } else if(answer == "no") {
+    std::cout << "Todos not cleared." << std::endl;
+  } else {
+    std::cout << "Invalid selection." << std::endl;
+  }
+};
+
 int main() {
   std::vector<std::string> todos {};
   std::string desired_operation {get_desired_operation()};
@@ -81,6 +96,9 @@ int main() {
         desired_operation = get_desired_operation();
     } else if(desired_operation == "delete") {
         delete_todo(todos);
+        desired_operation = get_desired_operation();
+    } else if(desired_operation == "clear") {
+        clear_todos(todos);
         desired_operation = get_desired_operation();
     } else {
         throw_error();
