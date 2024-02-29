@@ -48,7 +48,23 @@ void edit_todo(std::vector<std::string> &todos) {
   if(!todo_was_found) {
     std::cout << "That todo doesn't exist." << std::endl;
   }
-}
+};
+
+void delete_todo(std::vector<std::string> &todos) {
+  std::cout << "Please select the todo that you want to delete." << std::endl;
+  std::string todo_for_deletion;
+  getline(std::cin, todo_for_deletion);
+  bool todo_was_found {false};
+  for(size_t i {0}; i < todos.size(); i++) {
+    if(todos[i] == todo_for_deletion) {
+      todos.erase(todos.begin() + i);
+      todo_was_found = true;
+    }
+  }
+  if(!todo_was_found) {
+    std::cout << "todo not found." << std::endl;
+  }
+};
 
 int main() {
   std::vector<std::string> todos {};
@@ -62,6 +78,9 @@ int main() {
         desired_operation = get_desired_operation();
     } else if(desired_operation == "edit") {
         edit_todo(todos);
+        desired_operation = get_desired_operation();
+    } else if(desired_operation == "delete") {
+        delete_todo(todos);
         desired_operation = get_desired_operation();
     } else {
         throw_error();
