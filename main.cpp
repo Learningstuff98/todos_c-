@@ -31,6 +31,25 @@ void throw_error() {
   std::cout << "-----------------------------\n\n";
 };
 
+void edit_todo(std::vector<std::string> &todos) {
+  std::cout << "Please enter the todo that you want to edit:" << std::endl;
+  std::string todo_for_edit;
+  getline(std::cin, todo_for_edit);
+  std::cout << "Please enter the new value:" << std::endl;
+  std::string new_todo_value;
+  getline(std::cin, new_todo_value);
+  bool todo_was_found {false};
+  for(auto &todo: todos) {
+    if(todo == todo_for_edit) {
+      todo = new_todo_value;
+      todo_was_found = true;
+    }
+  }
+  if(!todo_was_found) {
+    std::cout << "That todo doesn't exist." << std::endl;
+  }
+}
+
 int main() {
   std::vector<std::string> todos {};
   std::string desired_operation {get_desired_operation()};
@@ -42,26 +61,7 @@ int main() {
         list_todos(todos);
         desired_operation = get_desired_operation();
     } else if(desired_operation == "edit") {
-
-        std::cout << "Please enter the todo that you want to edit:" << std::endl;
-        std::string todo_for_edit;
-        getline(std::cin, todo_for_edit);
-
-        std::cout << "Please enter the new value:" << std::endl;
-        std::string new_todo_value;
-        getline(std::cin, new_todo_value);
-
-        bool todo_was_found {false};
-        for(auto &todo: todos) {
-          if(todo == todo_for_edit) {
-            todo = new_todo_value;
-            todo_was_found = true;
-          }
-        }
-        if(!todo_was_found) {
-          std::cout << "That todo doesn't exist." << std::endl;
-        }
-
+        edit_todo(todos);
         desired_operation = get_desired_operation();
     } else {
         throw_error();
