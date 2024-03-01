@@ -19,7 +19,7 @@ std::string get_todo() {
 void list_todos(std::vector<std::string> const &todos) {
   std::cout << "\n-----------------------------" << std::endl;
   std::cout << "The current todos are as follows:" << std::endl;
-  for(auto todo: todos) {
+  for(auto const &todo: todos) {
     std::cout << todo << std::endl;
   }
   std::cout << "-----------------------------\n\n";
